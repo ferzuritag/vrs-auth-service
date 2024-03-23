@@ -10,11 +10,10 @@ auth = APIRouter()
 async def LogIn(request: Request):
     return await log_in(request)
 
+@auth.delete('/auth')
 async def LogOut(request: Request):
     return await log_out(request)
 
 @auth.get('/auth/session')
 async def getIfUserHasActiveSession(request: Request):
     return await get_if_user_has_active_session(request)
-
-
