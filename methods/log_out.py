@@ -13,9 +13,13 @@ async def log_out(request: Request):
 
     database = Database()
 
-    database.delete_user_token(token)
-
-    return {
-        'detail': 'log out succesfully'
-    }
-    pass
+    wasDeleted = database.delete_user_token(token)
+    
+    if (wasDeleted):
+        return {
+            'detail': 'log out succesfully'
+        }
+    else:
+        return {
+            'detail': 'token not found for sign out'
+        }
