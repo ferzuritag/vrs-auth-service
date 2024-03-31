@@ -23,7 +23,9 @@ async def log_in(request: Request):
     if password is None:
         raise HTTPException(status_code=404, detail="Body has to have a password")
     
-    response = requests.get(f"{os.getenv('USERS_API_PATH')}/users/{email}")
+    response = requests.get(f"{os.getenv('USERS_API_PATH')}/users/{email}",headers={
+        'api-key': os.getenv('USERS_API_KEY')
+    })
 
     if response.status_code == 200:
         user_data = response.json()
