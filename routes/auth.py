@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Request, Depends, Header
+from fastapi import APIRouter, Request, Header
 
 from methods.log_in import log_in
 from methods.get_if_user_has_active_session import get_if_user_has_active_session
