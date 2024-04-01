@@ -16,6 +16,6 @@ async def get_if_user_has_active_session(request: Request):
     isOnDatabase = database.exists_user_token(token)
 
     return {
-        'isActiveToken': isOnDatabase
+        'is_active_token': isOnDatabase
     }
     
