@@ -48,7 +48,6 @@ async def log_in(request: Request):
                     'active': user_data['active'],
                     'expiration': time.time() + one_day_on_seconds
                 },
-                'secret',
                 algorithm='HS256')
             
             database.set_token(user_data['email'], jwt_token, expiration=one_day_on_seconds)
