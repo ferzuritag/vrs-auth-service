@@ -1,8 +1,8 @@
 import redis
-
+import os
 class Database():
     def __init__(self):
-        self.database = redis.Redis(host='localhost', port=6379, decode_responses=True)
+        self.database = redis.from_url(os.getenv('REDIS_CONNECTION_STRING'))
     
     def set_token(self, user_email, jwt_token, expiration):
         return self.database.set(jwt_token, user_email, ex=expiration)
