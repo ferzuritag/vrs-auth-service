@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  api:
+    build: .
+    ports:
+      - 8001:80
+    environment:
+      - USERS_API_PATH=${USERS_API_PATH}
+      - USERS_API_KEY=${USERS_API_KEY}
+      - AUTH_API_KEY=${AUTH_API_KEY}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+      - REDIS_CONNECTION_STRING=${REDIS_CONNECTION_STRING}
+    depends_on:
+      - db
+  db:
+    image: redis
+    ports:
+      - 6379:6379
