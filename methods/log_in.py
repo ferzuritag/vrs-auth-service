@@ -27,7 +27,10 @@ async def log_in(request: Request):
         'api-key': os.getenv('USERS_API_KEY')
     })
 
+    print(response.status_code)
+
     if response.status_code == 200:
+
         user_data = response.json()
 
         if user_data['active'] is False:
@@ -57,4 +60,8 @@ async def log_in(request: Request):
                 'jwt': jwt_token
             }
         else:
-            raise HTTPException(403, detail='Invalid password')
+            raise HTTPException(403, detail='Invalid password or user')
+    if response.status_code == 404:
+        raise HTTPException(404, detail='Incorrect password or user')
+    
+    raise HTTPException(response.status_code, detail='Unhandled error') 
